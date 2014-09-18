@@ -1,10 +1,5 @@
 <?php
 /**
- * The WordPress Plugin Boilerplate.
- *
- * A foundation off of which to build well-documented WordPress plugins that
- * also follow WordPress Coding Standards and PHP best practices.
- *
  * @package   Text_Inserts
  * @author    Roosdoring Inc <roosdoring@hotmail.com>
  * @license   GPL-2.0+
@@ -34,32 +29,15 @@ if ( ! defined( 'WPINC' ) ) {
  * Public-Facing Functionality
  *----------------------------------------------------------------------------*/
 
-/*
- * @TODO:
- *
- * - replace `class-text-inserts.php` with the name of the plugin's class file
- *
- */
 require_once( plugin_dir_path( __FILE__ ) . 'public/class-text-inserts.php' );
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
  * When the plugin is deleted, the uninstall.php file is loaded.
- *
- * @TODO:
- *
- * - replace Text_Inserts with the name of the class defined in
- *   `class-text-inserts.php`
  */
 register_activation_hook( __FILE__, array( 'Text_Inserts', 'activate' ) );
 register_deactivation_hook( __FILE__, array( 'Text_Inserts', 'deactivate' ) );
 
-/*
- * @TODO:
- *
- * - replace Text_Inserts with the name of the class defined in
- *   `class-text-inserts.php`
- */
 add_action( 'plugins_loaded', array( 'Text_Inserts', 'get_instance' ) );
 
 /*----------------------------------------------------------------------------*
@@ -67,12 +45,6 @@ add_action( 'plugins_loaded', array( 'Text_Inserts', 'get_instance' ) );
  *----------------------------------------------------------------------------*/
 
 /*
- * @TODO:
- *
- * - replace `class-text-inserts-admin.php` with the name of the plugin's admin file
- * - replace Text_Inserts_Admin with the name of the class defined in
- *   `class-text-inserts-admin.php`
- *
  * If you want to include Ajax within the dashboard, change the following
  * conditional to:
  *

@@ -15,9 +15,6 @@
  *
  * If you're interested in introducing public-facing
  * functionality, then refer to `class-text-inserts.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
  * @package Text_Inserts_Admin
  * @author  Your Name <email@example.com>
  */

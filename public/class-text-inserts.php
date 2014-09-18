@@ -15,9 +15,6 @@
  *
  * If you're interested in introducing administrative or dashboard
  * functionality, then refer to `class-text-inserts-admin.php`
- *
- * @TODO: Rename this class to a proper name for your plugin.
- *
  * @package Text_Inserts
  * @author  Your Name <email@example.com>
  */
@@ -33,8 +30,6 @@ class Text_Inserts {
 	const VERSION = '1.0.0';
 
 	/**
-	 * @TODO - Rename "text-inserts" to the name your your plugin
-	 *
 	 * Unique identifier for your plugin.
 	 *
 	 *
