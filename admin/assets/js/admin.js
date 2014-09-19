@@ -232,7 +232,7 @@ var TextInserts = (function () {
     ml.toPseudoJSON = function (array) {
         var ps = '';
         
-        if (ps.length > 0) {
+        if (array.length > 0) {
             ps = '[';
 
             for (var i = 0; i < array.length; i++) {

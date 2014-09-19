@@ -141,8 +141,8 @@ class Text_Inserts {
 				if ($content_boxes[$i]->enabled) {
 					$txt = urldecode($content_boxes[$i]->text);
 					$display = $content_boxes[$i]->display;
-                    $filtering = $hook_boxes[$i]->filtering;
-                    $filtered_list = $hook_boxes[$i]->filtered_list; 
+                    $filtering = $content_boxes[$i]->filtering;
+                    $filtered_list = $content_boxes[$i]->filtered_list; 
 					$method = $content_boxes[$i]->method;
 					$position = $content_boxes[$i]->position;
 					add_filter('the_content', function($content) use($txt, $display, $method, $position, $filtering, $filtered_list) {
