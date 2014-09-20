@@ -1,6 +1,8 @@
-var TextInserts = (function () {
+var TextInserts = (function ($) {
     // Place your administration-specific JavaScript here
     var ml = {};
+
+    ml.eClicked = null;
     
     ml.addHookBox = function () {
         var hb = document.createElement('div');
@@ -293,6 +295,7 @@ var TextInserts = (function () {
         obj.parentNode.getElementsByClassName('position-wrap')[0].innerHTML = optStr;
     };
     
+    // Tooltips
     ml.displayTooltip = function (obj) {
         var text = obj.dataset.tooltip;
             text = text.replace('[REQUIRED]', '<span class="tooltip-required">REQUIRED</span>').replace('[OPTIONAL]', '<span class="tooltip-optional">OPTIONAL</span>');
@@ -300,16 +303,35 @@ var TextInserts = (function () {
         var tooltip = document.createElement('div');
         tooltip.className = 'tooltip-pop';
         tooltip.innerHTML = text;
+        $(tooltip).mouseleave(function() {
+            if (tooltip.parentNode !== document.activeElement) {
+                tooltip.remove();
+            }
+        });
 
+        obj.innerHTML = '?'; // reset contents to remove extra tooltip-pop elements
         obj.appendChild( tooltip );
     };
     
     ml.removeTooltip = function (obj) {
+        // don't remove if the clicked element, its parent, or its grandparent is the tooltip-pop container
+        if (ml.eClicked.className                       === 'tooltip-pop' ||
+            ml.eClicked.parentNode.className            === 'tooltip-pop' ||
+            ml.eClicked.parentNode.parentNode.className === 'tooltip-pop') {
+
+            return;
+        }
+
         obj.innerHTML = '?';
     };
     
     return ml;
-}());
+}(jQuery));
+
+jQuery(document).mousedown(function(e) {
+    // The latest element clicked
+    TextInserts.eClicked = e.target;
+});
 
 // switch tab onload
 window.onload = function () {

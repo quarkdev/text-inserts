@@ -55,17 +55,18 @@
     height: 423px;
 }
 
+/*-- TOOLTIPS --*/
 .tooltip {
     padding: 0 3px;
     cursor: pointer;
     font-size: 11px;
-    z-index: 10;
+    z-index: 100;
 }
 
 .tooltip-pop {
     font-size: 13px;
     padding: 12px;
-    width: 50%;
+    width: 60%;
     min-width: 220px;
     background-color: #fff;
     color: #000;
@@ -73,6 +74,12 @@
     -webkit-box-shadow: 0px 0px 23px 0px rgba(50, 50, 50, 0.75);
     -moz-box-shadow:    0px 0px 23px 0px rgba(50, 50, 50, 0.75);
     box-shadow:         0px 0px 23px 0px rgba(50, 50, 50, 0.75);
+    z-index: 110;
+    cursor: auto;
+}
+
+.tooltip-pop a {
+    text-decoration: none;
 }
 
 .tooltip:hover,
@@ -82,19 +89,19 @@
 }
 
 .tooltip-required {
-	color: #fff;
-	background-color: red;
-	padding: 4px 6px;
-	font-size: 10px;
-	border-radius: 2px;
+    color: #fff;
+    background-color: red;
+    padding: 4px 6px;
+    font-size: 10px;
+    border-radius: 2px;
 }
 
 .tooltip-optional {
-	color: #fff;
-	background-color: blue;
-	padding: 4px 6px;
-	font-size: 10px;
-	border-radius: 2px;
+    color: #fff;
+    background-color: blue;
+    padding: 4px 6px;
+    font-size: 10px;
+    border-radius: 2px;
 }
 
 .action-txt {
