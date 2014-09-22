@@ -15,6 +15,8 @@ var TextInserts = (function ($) {
                                 <span>Hook</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="[REQUIRED] The hook slug where the text/html content will be inserted.<br><br>If you are using the <strong>Thesis 2.1</strong> theme, you can use the hooks detailed here: <a href=&quot;http://diythemes.com/thesis/rtfm/tutorials/hooks/&quot; target=&quot;_blank&quot;>Thesis 2 Hook Syntax</a>.<br><br>If you are using the <strong>Genesis</strong> theme, you can use the hooks detailed here: <a href=&quot;http://my.studiopress.com/docs/hook-reference/#structural-action-hooks&quot; target=&quot;_blank&quot;>Structural Action Hooks</a>.<br><br>You can also view all available Genesis/Thesis 2 hooks <a href=&quot;'+ localized.hooks_url +'&quot; target=&quot;_blank&quot;>here</a>.<br><br><i>Note that the hooks beginning with <strong>hook_</strong> in the default list are Thesis hooks.</i>">?</span><br>\
                                 <input type="text" list="hooks-list" name="hook" class="hook" onkeydown="this.dataset.valid=false" onkeyup="TextInserts.validateHook(this)" data-valid="false" /><br><br>\
                                 <datalist id="hooks-list">\
+                                    <option value="hook_top_content">\
+                                    <option value="hook_bottom_content">\
                                     <option value="hook_before_container">\
                                     <option value="hook_before_header">\
                                     <option value="hook_before_columns">\
