@@ -1,3 +1,7 @@
+### 1.0.2
+* Added default datalist options for Hooks.
+* Added available hooks static resource.
+
 ### 1.0.1
 * Updated hook field tooltip.
 * Fixed tooltip rendering.
