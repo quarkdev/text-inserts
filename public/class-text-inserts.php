@@ -393,11 +393,11 @@ class Text_Inserts {
 
 	    do {
 	        $pos = strpos($source, '</p>', $offset);
-	        if ($pos === true) {
+	        if ($pos !== false) {
 	            array_push($positions, $pos);
 	            $offset = $pos + 1;
 	        }
-	    } while ($pos === true);
+	    } while ($pos !== false);
 	    
 	    return $positions;
 	}
