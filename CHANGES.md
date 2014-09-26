@@ -1,3 +1,6 @@
+### 1.0.3
+* Fixed a minor bug where text is inserted even when no paragraphs are detected (when using content box)
+
 ### 1.0.2
 * Added default datalist options for Hooks.
 * Added available hooks static resource.
