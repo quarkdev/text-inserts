@@ -393,18 +393,13 @@ class Text_Inserts {
 
 	    do {
 	        $pos = strpos($source, '</p>', $offset);
-	        if ($pos) {
+	        if ($pos === true) {
 	            array_push($positions, $pos);
 	            $offset = $pos + 1;
 	        }
-	    } while ($pos);
+	    } while ($pos === true);
 	    
-	    if (count($positions) > 0) {
-	        return $positions;
-	    }
-	    else {
-	        return FALSE;
-	    }
+	    return $positions;
 	}
 
 	public function insert_text_html_to_content($txt, $method, $position, &$content) {
