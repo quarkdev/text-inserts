@@ -273,7 +273,6 @@ var TextInserts = (function ($) {
             ps = ps.slice(0, -1); // strip the extra comma
             ps += ']';
         }
-        alert(ps);
         return ps;
     };
 
