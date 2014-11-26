@@ -1,3 +1,6 @@
+### 1.0.4.1
+* Fixed plus (+) signs disappearing, changed encoding function
+
 ### 1.0.4
 * Fixed a bug introduced in 1.0.3, (content boxes stopped working)
 

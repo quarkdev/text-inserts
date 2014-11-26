@@ -157,13 +157,13 @@ var TextInserts = (function ($) {
             datasect = hb_boxes[i].getElementsByClassName('hb-upper-wrapper')[0];
             settings = datasect.getElementsByClassName('hb-options-div')[0];
             data = {
-                name          : escape(settings.getElementsByClassName('name')[0].value),
+                name          : encodeURIComponent(settings.getElementsByClassName('name')[0].value),
                 hook          : settings.getElementsByClassName('hook')[0].value,
                 display       : settings.getElementsByClassName('display')[0].value,
                 filtering     : settings.getElementsByClassName('filtering')[0].value,
                 filtered_list : settings.getElementsByClassName('filtered-ids')[0].value.replace(' ', ''),
                 priority      : settings.getElementsByClassName('priority')[0].value,
-                text          : escape(datasect.getElementsByClassName('hb-txt-div')[0].getElementsByClassName('hb-txt-contentarea')[0].value),
+                text          : encodeURIComponent(datasect.getElementsByClassName('hb-txt-div')[0].getElementsByClassName('hb-txt-contentarea')[0].value),
                 enabled       : hb_boxes[i].getElementsByClassName('enabled')[0].checked
             };
 
@@ -183,14 +183,14 @@ var TextInserts = (function ($) {
             datasect = cb_boxes[i].getElementsByClassName('cb-upper-wrapper')[0];
             settings = datasect.getElementsByClassName('cb-options-div')[0];
             data = {
-                name 	      : escape(settings.getElementsByClassName('name')[0].value),
+                name 	      : encodeURIComponent(settings.getElementsByClassName('name')[0].value),
                 display       : settings.getElementsByClassName('display')[0].value,
                 filtering     : settings.getElementsByClassName('filtering')[0].value,
                 filtered_list : settings.getElementsByClassName('filtered-ids')[0].value.replace(' ', ''),
                 method 	      : settings.getElementsByClassName('method')[0].value,
                 position      : settings.getElementsByClassName('position')[0].value,
                 priority      : settings.getElementsByClassName('priority')[0].value,
-                text 	      : escape(datasect.getElementsByClassName('cb-txt-div')[0].getElementsByClassName('cb-txt-contentarea')[0].value),
+                text 	      : encodeURIComponent(datasect.getElementsByClassName('cb-txt-div')[0].getElementsByClassName('cb-txt-contentarea')[0].value),
                 enabled       : cb_boxes[i].getElementsByClassName('enabled')[0].checked
             };
 
@@ -273,13 +273,8 @@ var TextInserts = (function ($) {
             ps = ps.slice(0, -1); // strip the extra comma
             ps += ']';
         }
-
+        alert(ps);
         return ps;
-    };
-
-    // replaces double quotes in str into their html entity
-    ml.doubleQuotesToEntity = function (str) {
-        return str.split('"').join('&dbquot;');
     };
 
     // update tooltip for the insert method selection box
