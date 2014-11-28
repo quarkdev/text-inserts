@@ -1,3 +1,6 @@
+### 1.0.4.2
+* Plugin deletion now cleanly removes all associated data.
+
 ### 1.0.4.1
 * Fixed plus (+) signs disappearing, changed encoding function
 

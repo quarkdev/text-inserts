@@ -14,4 +14,10 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-// @TODO: Define uninstall functionality here
+// 1. remove database entries
+delete_option( 'txtins_hook_boxes' );
+delete_option( 'txtins_content_boxes' );
+
+// for multisite
+delete_site_option( 'txtins_hook_boxes' );
+delete_site_option( 'txtins_content_boxes' );
