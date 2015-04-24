@@ -21,10 +21,20 @@
 	<form id="txtins_form" method="post" action="options.php">
 		<?php settings_fields( 'txtins_group' ); ?>
 		<?php do_settings_sections( 'txtins_group' ); ?>
-		<p><input type="button" class="button button-primary" onclick="TextInserts.tiSaveChanges()" value="Save Changes" /></p>
+        <?php
+            // retrieve plugin data
+	    	$plugin_data = get_plugin_data( plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . 'text-inserts.php' );
+	    	$plugin_version = $plugin_data['Version'];
+        ?>
+        
+        <p><a id="version-info" href="<?php echo plugins_url( 'CHANGES.md', dirname( dirname(__FILE__) ) ); ?>" target="_blank" title="View Changelog" class="unicorn-btn unicorn-btn-pill unicorn-btn-flat-action unicorn-btn-tiny">v<?php echo $plugin_version; ?></a></p>
 
 		<input type="hidden" name="txtins_hook_boxes" id="json_hb" value="" />
 		<input type="hidden" name="txtins_content_boxes" id="json_cb" value="" />
+        
+		<?php if ( ! class_exists( 'Fragen\\Github_Updater\\Plugin' ) ): ?>
+		<p><i class="fa fa-github" style="font-size: 18px;"></i> This plugin is hosted on GitHub. To enable updates, please install <a href="https://github.com/afragen/github-updater" target="_blank">Github Updater</a>.</p>
+		<?php endif; ?>
 
         <ul id="tabbed-links">
         	<li id="tl-1" class="tl-active" onclick="TextInserts.switchTab(this)" data-tab="hook-box-div">Hook Boxes</li><!--
@@ -93,8 +103,19 @@
                         <div class="clear-fix"></div>
                     </div>
                     <div class="hb-lower-wrapper">
-                        <input type="checkbox" name="enabled" class="enabled" value="1" <?php checked($hook_boxes[$i]->enabled); ?> /><span>Enable</span>
-                        <span class="rem-parent">
+						<div style="max-width: 180px;">
+							<label class="switch-light switch-ios" onclick="" style="position: relative; left: -80px;">
+							  <input type="checkbox" name="enabled" class="enabled" value="1" <?php checked($hook_boxes[$i]->enabled); ?> />
+							  <span>
+                                &nbsp;
+							    <span>Hide</span>
+							    <span>Show</span>
+							  </span>
+
+							  <a></a>
+							</label>
+                        </div>
+                        <span class="rem-parent" style="position: relative; top: -20px;">
                             <span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span>
                         </span>
                     </div>
@@ -104,7 +125,7 @@
             </div>
 
             <div id="hb-control-box">
-                <input type="button" onclick="TextInserts.addHookBox()" value="Add Box" />
+                <button type="button" class="unicorn-btn unicorn-btn-action unicorn-btn-rounded unicorn-btn-small" onclick="TextInserts.addHookBox()"><i class="fa fa-plus"></i> Add Hook Box</button>
             </div>
         </div>
 		
@@ -176,8 +197,19 @@
                         <div class="clear-fix"></div>
                     </div>
                     <div class="cb-lower-wrapper">
-                        <input type="checkbox" name="enabled" class="enabled" value="1" <?php checked($content_boxes[$i]->enabled); ?> /><span>Enable</span>
-                        <span class="rem-parent">
+						<div style="max-width: 180px;">
+							<label class="switch-light switch-ios" onclick="" style="position: relative; left: -80px;">
+							  <input type="checkbox" name="enabled" class="enabled" value="1" <?php checked($content_boxes[$i]->enabled); ?> />
+							  <span>
+                                &nbsp;
+							    <span>Hide</span>
+							    <span>Show</span>
+							  </span>
+
+							  <a></a>
+							</label>
+                        </div>
+                        <span class="rem-parent" style="position: relative; top: -20px;">
                             <span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span>
                         </span>
                     </div>
@@ -187,7 +219,7 @@
             </div>
 
             <div id="cb-control-box">
-                <input type="button" onclick="TextInserts.addContentBox()" value="Add Box" />
+                <button type="button" class="unicorn-btn unicorn-btn-action unicorn-btn-rounded unicorn-btn-small" onclick="TextInserts.addContentBox()"><i class="fa fa-plus"></i> Add Content Box</button>
             </div>
         </div>
 		<p><input type="button" class="button button-primary" onclick="TextInserts.tiSaveChanges()" value="Save Changes" /></p>

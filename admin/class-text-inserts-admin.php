@@ -136,6 +136,9 @@ class Text_Inserts_Admin {
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+			wp_enqueue_style( $this->plugin_slug .'-fontawesome-styles', '//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css', array(), '4.3.0' );
+			wp_enqueue_style( $this->plugin_slug .'-button-styles', plugins_url( 'includes/unicorn/buttons.css', dirname( __FILE__ ) ), array(), '1.0.0' );
+			wp_enqueue_style( $this->plugin_slug .'-toggle-styles', plugins_url( 'includes/ghinda/toggle-switch.css', dirname( __FILE__ ) ), array(), '1.0.0' );
 			wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), Text_Inserts::VERSION );
 		}
 

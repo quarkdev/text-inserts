@@ -1,3 +1,7 @@
+### 1.1.0
+* Improved UI
+* Version format from hereon will be major.minor.[patch]
+
 ### 1.0.4.2
 * Plugin deletion now cleanly removes all associated data.
 

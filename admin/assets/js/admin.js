@@ -58,8 +58,19 @@ var TextInserts = (function ($) {
                             <div class="clear-fix"></div>\
                         </div>\
                         <div class="hb-lower-wrapper">\
-                            <input type="checkbox" name="enabled" class="enabled" value="1" checked="checked" /><span>Enable</span>\
-                            <span class="rem-parent">\
+                            <div style="max-width: 180px;">\
+                                <label class="switch-light switch-ios" onclick="" style="position: relative; left: -80px;">\
+                                  <input type="checkbox" name="enabled" class="enabled" value="1" checked="checked" />\
+                                  <span>\
+                                    &nbsp;\
+                                    <span>Hide</span>\
+                                    <span>Show</span>\
+                                  </span>\
+                                    \
+                                  <a></a>\
+                                </label>\
+                            </div>\
+                            <span class="rem-parent" style="position: relative; top: -20px;">\
                                 <span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span>\
                             </span>\
                         </div>';
@@ -109,8 +120,19 @@ var TextInserts = (function ($) {
                             <div class="clear-fix"></div>\
                         </div>\
                         <div class="cb-lower-wrapper">\
-                            <input type="checkbox" name="enabled" class="enabled" value="1" checked="checked" /><span>Enable</span>\
-                            <span class="rem-parent">\
+                            <div style="max-width: 180px;">\
+                                <label class="switch-light switch-ios" onclick="" style="position: relative; left: -80px;">\
+                                  <input type="checkbox" name="enabled" class="enabled" value="1" checked="checked" />\
+                                  <span>\
+                                    &nbsp;\
+                                    <span>Hide</span>\
+                                    <span>Show</span>\
+                                  </span>\
+                                    \
+                                  <a></a>\
+                                </label>\
+                            </div>\
+                            <span class="rem-parent" style="position: relative; top: -20px;">\
                                 <span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span>\
                             </span>\
                         </div>';
@@ -135,7 +157,7 @@ var TextInserts = (function ($) {
 
     ml.displayRemoveConf = function (obj) {
         //obj.getElementsByClassName('rem-conf-line')[0].style.display = 'inline';
-        obj.parentNode.innerHTML = '<span style="float: right; margin-right: 12px;" class="rem-conf-line">Do you really wish to remove this box? <span class="action-txt" onclick="TextInserts.removeBox(this)">YES</span> / <span class="action-txt" onclick="TextInserts.removeConf(this)">NO</span></span>';
+        obj.parentNode.innerHTML = '<span style="float: right; margin-right: 12px; position: relative; top: -5px;" class="rem-conf-line">Do you really wish to remove this box? <span class="action-txt" onclick="TextInserts.removeBox(this)">YES</span> / <span class="action-txt" onclick="TextInserts.removeConf(this)">NO</span></span>';
     };
 
     ml.removeBox = function (obj) {
