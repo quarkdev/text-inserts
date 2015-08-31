@@ -1,3 +1,6 @@
+### 1.1.2
+* Fixed bug introduced in 1.1.1 where filters with post and category id mixed fail.
+
 ### 1.1.1
 * Can now filter by category id.
 

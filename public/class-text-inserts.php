@@ -94,7 +94,7 @@ class Text_Inserts {
                         $categories = get_the_category( $post->ID );
                         $catid = $categories[0] -> cat_ID;
                         
-                        $ids = explode( ',', $filtered_list );
+                        $ids = explode( ',', str_replace( ' ', '', $filtered_list ) );
                         
                         $post_ids = array();
                         $cat_ids = array();
@@ -134,6 +134,7 @@ class Text_Inserts {
                         
                         switch ( $filtering ) {
                             case 1:
+                                $filtering_ok = true;
                                 break;
                             case 2:
                                 // exclude all except
@@ -144,6 +145,8 @@ class Text_Inserts {
                                 if ( count( $cat_ids ) > 0 ) {
                                     $ci_ok = in_array( $catid , $cat_ids );
                                 }
+                                
+                                $filtering_ok = $pi_ok || $ci_ok;
                                 break;
                             case 3:
                                 // include all except
@@ -154,10 +157,10 @@ class Text_Inserts {
                                 if ( count( $cat_ids ) > 0 ) {
                                     $ci_ok = !in_array( $catid, $cat_ids );
                                 }
+                                
+                                $filtering_ok = $pi_ok && $ci_ok;
                                 break;
                         }
-                        
-                        $filtering_ok = $pi_ok && $ci_ok;
                         
                         if ( $display_ok && $filtering_ok ) {
                             echo urldecode($txt);
@@ -183,7 +186,7 @@ class Text_Inserts {
                         $categories = get_the_category( $post->ID );
                         $catid = $categories[0] -> cat_ID;
                         
-                        $ids = explode( ',', $filtered_list );
+                        $ids = explode( ',', str_replace( ' ', '', $filtered_list ) );
                         
                         $post_ids = array();
                         $cat_ids = array();
@@ -217,6 +220,7 @@ class Text_Inserts {
                         
                         switch ( $filtering ) {
                             case 1:
+                                $filtering_ok = true;
                                 break;
                             case 2:
                                 // exclude all except
@@ -227,6 +231,8 @@ class Text_Inserts {
                                 if ( count( $cat_ids ) > 0 ) {
                                     $ci_ok = in_array( $catid , $cat_ids );
                                 }
+                                
+                                $filtering_ok = $pi_ok || $ci_ok;
                                 break;
                             case 3:
                                 // include all except
@@ -237,10 +243,10 @@ class Text_Inserts {
                                 if ( count( $cat_ids ) > 0 ) {
                                     $ci_ok = !in_array( $catid, $cat_ids );
                                 } 
+                                
+                                $filtering_ok = $pi_ok && $ci_ok;
                                 break;
                         }
-                        
-                        $filtering_ok = $pi_ok && $ci_ok;
 
                         if ( $display_ok && $filtering_ok ) {
                             $this->insert_text_html_to_content($txt, $method, $position, $content);
