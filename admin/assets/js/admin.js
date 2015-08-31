@@ -40,13 +40,13 @@ var TextInserts = (function ($) {
                                     <option value="4" >homepage only</option>\
                                     <option value="5" >everywhere</option>\
                                 </select><br><br>\
-                            <span>Filtering Method</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="Filter by including/excluding post/page IDs.">?</span><br>\
+                            <span>Filtering Method</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="Filter by including/excluding post/page IDs or category IDs.">?</span><br>\
                             <select name="filtering" class="filtering">\
                                 <option value="1" selected="selected">none</option>\
                                 <option value="2">exclude all except</option>\
                                 <option value="3">include all except</option>\
                             </select><br><br>\
-                            <span>Filtered IDs</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="[OPTIONAL] Comma-delimited list of post/page IDs.">?</span><br>\
+                            <span>Filtered IDs</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="[OPTIONAL] Comma-delimited list of post/page IDs or category IDs. Prefix <strong>c</strong> if it is a category ID (e.g. <strong>c12</strong> for category id 12).">?</span><br>\
                             <input type="text" name="filtered-ids" class="filtered-ids" value="" /><br><br>\
                                 <span>Priority</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="[REQUIRED] The lower the number, the higher the priority. Only change this if you know what action/filter priority is.">?</span><br>\
                                 <input type="text" name="priority" class="priority" value="11" />\
@@ -92,13 +92,13 @@ var TextInserts = (function ($) {
                                     <option value="2">posts only</option>\
                                     <option value="3">pages only</option>\
                                 </select><br><br>\
-                                <span>Filtering Method</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="Filter by including/excluding post/page IDs.">?</span><br>\
+                                <span>Filtering Method</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="Filter by including/excluding post/page IDs or category IDs.">?</span><br>\
                                 <select name="filtering" class="filtering">\
                                     <option value="1" selected="selected">none</option>\
                                     <option value="2">exclude all except</option>\
                                     <option value="3">include all except</option>\
                                 </select><br><br>\
-                                <span>Filtered IDs</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="[OPTIONAL] Comma-delimited list of post/page IDs.">?</span><br>\
+                                <span>Filtered IDs</span> <span class="tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="[OPTIONAL] Comma-delimited list of post/page IDs or category IDs. Prefix <strong>c</strong> if it is a category ID (e.g. <strong>c12</strong> for category id 12).">?</span><br>\
                                 <input type="text" name="filtered-ids" class="filtered-ids" value="" /><br><br>\
                                 <span>Insertion Method</span> <span class="tooltip ins-tooltip" tabindex="100" onfocus="TextInserts.displayTooltip(this)" onblur="TextInserts.removeTooltip(this)" data-tooltip="Text/html will be inserted after the nth paragraph.">?</span><br>\
                                 <select name="method" class="method" onchange="TextInserts.changeInsMethodTooltip(this)">\

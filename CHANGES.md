@@ -1,3 +1,6 @@
+### 1.1.1
+* Can now filter by category id.
+
 ### 1.1.0
 * Improved UI
 * Version format from hereon will be major.minor.[patch]

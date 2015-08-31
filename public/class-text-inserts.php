@@ -90,7 +90,23 @@ class Text_Inserts {
                     $filtered_list = $hook_boxes[$i]->filtered_list;
 					add_action($hook_boxes[$i]->hook, function() use($txt, $display, $filtering, $filtered_list) {
                         global $post;
+                        
+                        $categories = get_the_category( $post->ID );
+                        $catid = $categories[0] -> cat_ID;
+                        
                         $ids = explode( ',', $filtered_list );
+                        
+                        $post_ids = array();
+                        $cat_ids = array();
+                        
+                        for ( $x = 0, $len = count( $ids ); $x < $len; $x++ ) {
+                            if ( $ids[$x][0] === 'c' ) {
+                                array_push( $cat_ids, substr( $ids[$x], 1 ) );
+                            }
+                            else {
+                                array_push( $post_ids, $ids[$x] );
+                            }
+                        }
                         
                         $display_ok = false;
                         $filtering_ok = false;
@@ -113,19 +129,35 @@ class Text_Inserts {
                                 break;
                         }
                         
+                        $pi_ok = true;
+                        $ci_ok = true;
+                        
                         switch ( $filtering ) {
                             case 1:
-                                $filtering_ok = true;
                                 break;
                             case 2:
                                 // exclude all except
-                                $filtering_ok = in_array( $post->ID, $ids ); 
+                                if ( count( $post_ids ) > 0 ) {
+                                    $pi_ok = in_array( $post->ID, $post_ids ); 
+                                }
+                                
+                                if ( count( $cat_ids ) > 0 ) {
+                                    $ci_ok = in_array( $catid , $cat_ids );
+                                }
                                 break;
                             case 3:
                                 // include all except
-                                $filtering_ok = !in_array( $post->ID, $ids ); 
+                                if ( count( $post_ids ) > 0 ) {
+                                    $pi_ok = !in_array( $post->ID, $post_ids ); 
+                                }
+                                
+                                if ( count( $cat_ids ) > 0 ) {
+                                    $ci_ok = !in_array( $catid, $cat_ids );
+                                }
                                 break;
                         }
+                        
+                        $filtering_ok = $pi_ok && $ci_ok;
                         
                         if ( $display_ok && $filtering_ok ) {
                             echo urldecode($txt);
@@ -142,12 +174,28 @@ class Text_Inserts {
 					$txt = urldecode($content_boxes[$i]->text);
 					$display = $content_boxes[$i]->display;
                     $filtering = $content_boxes[$i]->filtering;
-                    $filtered_list = $content_boxes[$i]->filtered_list; 
+                    $filtered_list = $content_boxes[$i]->filtered_list;
 					$method = $content_boxes[$i]->method;
 					$position = $content_boxes[$i]->position;
 					add_filter('the_content', function($content) use($txt, $display, $method, $position, $filtering, $filtered_list) {
                         global $post;
+                        
+                        $categories = get_the_category( $post->ID );
+                        $catid = $categories[0] -> cat_ID;
+                        
                         $ids = explode( ',', $filtered_list );
+                        
+                        $post_ids = array();
+                        $cat_ids = array();
+                        
+                        for ( $x = 0, $len = count( $ids ); $x < $len; $x++ ) {
+                            if ( $ids[$x][0] === 'c' ) {
+                                array_push( $cat_ids, substr( $ids[$x], 1 ) );
+                            }
+                            else {
+                                array_push( $post_ids, $ids[$x] );
+                            }
+                        }
                         
                         $display_ok = false;
                         $filtering_ok = false;
@@ -164,19 +212,35 @@ class Text_Inserts {
                                 break;
                         }
                         
+                        $pi_ok = true;
+                        $ci_ok = true;
+                        
                         switch ( $filtering ) {
                             case 1:
-                                $filtering_ok = true;
                                 break;
                             case 2:
                                 // exclude all except
-                                $filtering_ok = in_array( $post->ID, $ids ); 
+                                if ( count( $post_ids ) > 0 ) {
+                                    $pi_ok = in_array( $post->ID, $post_ids ); 
+                                }
+                                
+                                if ( count( $cat_ids ) > 0 ) {
+                                    $ci_ok = in_array( $catid , $cat_ids );
+                                }
                                 break;
                             case 3:
                                 // include all except
-                                $filtering_ok = !in_array( $post->ID, $ids ); 
+                                if ( count( $post_ids ) > 0 ) {
+                                    $pi_ok = !in_array( $post->ID, $post_ids ); 
+                                }
+                                
+                                if ( count( $cat_ids ) > 0 ) {
+                                    $ci_ok = !in_array( $catid, $cat_ids );
+                                } 
                                 break;
                         }
+                        
+                        $filtering_ok = $pi_ok && $ci_ok;
 
                         if ( $display_ok && $filtering_ok ) {
                             $this->insert_text_html_to_content($txt, $method, $position, $content);
