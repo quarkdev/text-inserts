@@ -3,16 +3,16 @@
  * @package   Text_Inserts
  * @author    Roosdoring Inc <roosdoring@hotmail.com>
  * @license   GPL-2.0+
- * @link      http://www.thephysicalaffiliate.com/
+ * @link      http://www.authoritysitesecrets.com/
  * @copyright 2014 Roosdoring Inc
  *
  * @wordpress-plugin
  * Plugin Name:       Text Inserts
  * Plugin URI:       
  * Description:       Simplifies ad-code or text insertions by making it possible to add content/hook text inserts via the plugin settings panel.
- * Version:           1.1.2
+ * Version:           1.2.0
  * Author:            Roosdoring Inc
- * Author URI:        http://www.thephysicalaffiliate.com/
+ * Author URI:        http://www.authoritysitesecrets.com/
  * Text Domain:       text-inserts
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

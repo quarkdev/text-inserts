@@ -1,3 +1,5 @@
+var scmi = []; // static cm instances
+
 var TextInserts = (function ($) {
     // Place your administration-specific JavaScript here
     var ml = {};
@@ -76,6 +78,13 @@ var TextInserts = (function ($) {
                         </div>';
         
         document.getElementById('hook-boxes').appendChild(hb);
+        var cm = CodeMirror.fromTextArea(hb.getElementsByClassName('hb-txt-contentarea')[0], {
+            lineNumbers: true,
+            mode: 'htmlmixed'
+        });
+        cm.setSize(null, 357);
+        scmi.push(cm);
+        hb.dataset.scmii = scmi.length - 1; // scmi index
     };
 
     ml.addContentBox = function () {
@@ -138,6 +147,13 @@ var TextInserts = (function ($) {
                         </div>';
 
         document.getElementById('content-boxes').appendChild(cb);
+        var cm = CodeMirror.fromTextArea(cb.getElementsByClassName('cb-txt-contentarea')[0], {
+            lineNumbers: true,
+            mode: 'htmlmixed'
+        });
+        cm.setSize(null, 423);
+        scmi.push(cm);
+        cb.dataset.scmii = scmi.length - 1; // scmi index
     };
 
     ml.validateHook = function (obj) {
@@ -185,7 +201,7 @@ var TextInserts = (function ($) {
                 filtering     : settings.getElementsByClassName('filtering')[0].value,
                 filtered_list : settings.getElementsByClassName('filtered-ids')[0].value.replace(' ', ''),
                 priority      : settings.getElementsByClassName('priority')[0].value,
-                text          : encodeURIComponent(datasect.getElementsByClassName('hb-txt-div')[0].getElementsByClassName('hb-txt-contentarea')[0].value),
+                text          : encodeURIComponent(scmi[hb_boxes[i].dataset.scmii].getValue()),
                 enabled       : hb_boxes[i].getElementsByClassName('enabled')[0].checked
             };
 
@@ -212,7 +228,7 @@ var TextInserts = (function ($) {
                 method 	      : settings.getElementsByClassName('method')[0].value,
                 position      : settings.getElementsByClassName('position')[0].value,
                 priority      : settings.getElementsByClassName('priority')[0].value,
-                text 	      : encodeURIComponent(datasect.getElementsByClassName('cb-txt-div')[0].getElementsByClassName('cb-txt-contentarea')[0].value),
+                text 	      : encodeURIComponent(scmi[cb_boxes[i].dataset.scmii].getValue()),
                 enabled       : cb_boxes[i].getElementsByClassName('enabled')[0].checked
             };
 
@@ -268,6 +284,12 @@ var TextInserts = (function ($) {
 
         // show this tab
         document.getElementById(obj.dataset.tab).style.display = 'block';
+        
+        setTimeout(function() {
+            for (var i = 0; i < scmi.length; i++) {
+                scmi[i].refresh();
+            }
+        }, 10);
     };
 
     // custom json stringification function, takes an array of objects
@@ -368,13 +390,40 @@ jQuery(document).mousedown(function(e) {
 });
 
 // switch tab onload
-window.onload = function () {
+jQuery(document).ready(function () {
     var activeTab = sessionStorage.getItem('txtins_currently_viewed_tab');
     activeTab = document.getElementById(activeTab);
     if (activeTab !== null) {
         TextInserts.switchTab(activeTab);
     }
-};
+    
+    var hbs = document.getElementsByClassName('hook-box');
+    var cbs = document.getElementsByClassName('content-box');
+    
+    for (var i = 0; i < hbs.length; i++) {
+        (function(n) {
+            var cm = CodeMirror.fromTextArea(hbs[n].getElementsByClassName('hb-txt-contentarea')[0], {
+                lineNumbers: true,
+                mode: 'htmlmixed'
+            });
+            cm.setSize(null, 357);
+            scmi.push(cm);
+            hbs[n].dataset.scmii = scmi.length - 1; // scmi index
+        }(i))
+    }
+    
+    for (var i = 0; i < cbs.length; i++) {
+        (function(n) {
+            var cm = CodeMirror.fromTextArea(cbs[n].getElementsByClassName('cb-txt-contentarea')[0], {
+                lineNumbers: true,
+                mode: 'htmlmixed'
+            });
+            cm.setSize(null, 423);
+            scmi.push(cm);
+            cbs[n].dataset.scmii = scmi.length - 1; // scmi index            
+        }(i))
+    }
+});
 
 
 

@@ -5,7 +5,7 @@
  * @package   Text_Inserts_Admin
  * @author    Roosdoring Inc <roosdoring@hotmail.com>
  * @license   GPL-2.0+
- * @link      http://www.thephysicalaffiliate.com/
+ * @link      http://www.authoritysitesecrets.com/
  * @copyright 2014 Roosdoring Inc
  */
 
@@ -139,6 +139,7 @@ class Text_Inserts_Admin {
 			wp_enqueue_style( $this->plugin_slug .'-fontawesome-styles', '//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css', array(), '4.3.0' );
 			wp_enqueue_style( $this->plugin_slug .'-button-styles', plugins_url( 'includes/unicorn/buttons.css', dirname( __FILE__ ) ), array(), '1.0.0' );
 			wp_enqueue_style( $this->plugin_slug .'-toggle-styles', plugins_url( 'includes/ghinda/toggle-switch.css', dirname( __FILE__ ) ), array(), '1.0.0' );
+            wp_enqueue_style( $this->plugin_slug .'-codemirror-styles', plugins_url( 'includes/codemirror/lib/codemirror.css', dirname( __FILE__ ) ), array(), '1.0.0' );
 			wp_enqueue_style( $this->plugin_slug .'-admin-styles', plugins_url( 'assets/css/admin.css', __FILE__ ), array(), Text_Inserts::VERSION );
 		}
 
@@ -163,6 +164,11 @@ class Text_Inserts_Admin {
 
 		$screen = get_current_screen();
 		if ( $this->plugin_screen_hook_suffix == $screen->id ) {
+            wp_enqueue_script( $this->plugin_slug . '-codemirror-script', plugins_url( 'includes/codemirror/lib/codemirror.js', dirname( __FILE__ ) ), array(), '1.0.0' );
+            wp_enqueue_script( $this->plugin_slug . '-codemirror-mode-xml-script', plugins_url( 'includes/codemirror/mode/xml/xml.js', dirname( __FILE__ ) ), array(), '1.0.0' );
+            wp_enqueue_script( $this->plugin_slug . '-codemirror-mode-css-script', plugins_url( 'includes/codemirror/mode/css/css.js', dirname( __FILE__ ) ), array(), '1.0.0' );
+            wp_enqueue_script( $this->plugin_slug . '-codemirror-mode-js-script', plugins_url( 'includes/codemirror/mode/javascript/javascript.js', dirname( __FILE__ ) ), array(), '1.0.0' );
+            wp_enqueue_script( $this->plugin_slug . '-codemirror-mode-htmlmixed-script', plugins_url( 'includes/codemirror/mode/htmlmixed/htmlmixed.js', dirname( __FILE__ ) ), array(), '1.0.0' );
 			wp_register_script( $this->plugin_slug . '-admin-script',  plugins_url( 'assets/js/admin.js', __FILE__ ), array( 'jquery' ), Text_Inserts::VERSION );
 			wp_localize_script( $this->plugin_slug . '-admin-script', 'localized', array( 'hooks_url' => plugins_url( 'includes/hooks.html', __FILE__ ) ) );
 			wp_enqueue_script( $this->plugin_slug . '-admin-script' );

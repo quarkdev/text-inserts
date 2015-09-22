@@ -5,7 +5,7 @@
  * @package   Text_Inserts
  * @author    Roosdoring Inc <roosdoring@hotmail.com>
  * @license   GPL-2.0+
- * @link      http://www.thephysicalaffiliate.com/
+ * @link      http://www.authoritysitesecrets.com/
  * @copyright 2014 Roosdoring Inc
  */
 
