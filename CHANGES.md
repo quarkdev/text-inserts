@@ -1,3 +1,6 @@
+### 1.2.1
+* Moved update repo to bitbucket.
+
 ### 1.2.0
 * Now uses CodeMirror for easier formatting of code.
 

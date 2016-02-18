@@ -10,14 +10,16 @@
  * Plugin Name:       Text Inserts
  * Plugin URI:       
  * Description:       Simplifies ad-code or text insertions by making it possible to add content/hook text inserts via the plugin settings panel.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Author:            Roosdoring Inc
  * Author URI:        http://www.authoritysitesecrets.com/
  * Text Domain:       text-inserts
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Domain Path:       /languages
- * GitHub Plugin URI: https://github.com/quarkdev/text-inserts
+ * Bitbucket Plugin URI: https://bitbucket.org/sychrissan/text-inserts/
+ * Requires WP: 3.5.1
+ * Requires PHP: 5.4
  */
 
 // If this file is called directly, abort.
