@@ -1,3 +1,6 @@
+### 1.2.2
+* Reworked removal button confirmation.
+
 ### 1.2.1
 * Moved update repo to bitbucket.
 

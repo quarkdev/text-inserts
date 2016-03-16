@@ -72,9 +72,8 @@ var TextInserts = (function ($) {
                                   <a></a>\
                                 </label>\
                             </div>\
-                            <span class="rem-parent" style="position: relative; top: -20px;">\
-                                <span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span>\
-                            </span>\
+                            <button type="button" style="float: right; position: relative; top: -25px;" class="unicorn-btn unicorn-btn-flat-caution unicorn-btn-rounded unicorn-btn-small" onclick="(function(el){TextInserts.confirmAction(el, function(){ TextInserts.removeBox(el); })}(this))"><i class="fa fa-remove"></i> Remove</button>\
+                            <div style="clear:both; display: none;"></div>\
                         </div>';
         
         document.getElementById('hook-boxes').appendChild(hb);
@@ -141,9 +140,8 @@ var TextInserts = (function ($) {
                                   <a></a>\
                                 </label>\
                             </div>\
-                            <span class="rem-parent" style="position: relative; top: -20px;">\
-                                <span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span>\
-                            </span>\
+                            <button type="button" style="float: right; position: relative; top: -25px;" class="unicorn-btn unicorn-btn-flat-caution unicorn-btn-rounded unicorn-btn-small" onclick="(function(el){TextInserts.confirmAction(el, function(){ TextInserts.removeBox(el); })}(this))"><i class="fa fa-remove"></i> Remove</button>\
+                            <div style="clear:both; display: none;"></div>\
                         </div>';
 
         document.getElementById('content-boxes').appendChild(cb);
@@ -170,18 +168,30 @@ var TextInserts = (function ($) {
             obj.style.borderColor = 'red';
         }
     };
-
-    ml.displayRemoveConf = function (obj) {
-        //obj.getElementsByClassName('rem-conf-line')[0].style.display = 'inline';
-        obj.parentNode.innerHTML = '<span style="float: right; margin-right: 12px; position: relative; top: -5px;" class="rem-conf-line">Do you really wish to remove this box? <span class="action-txt" onclick="TextInserts.removeBox(this)">YES</span> / <span class="action-txt" onclick="TextInserts.removeConf(this)">NO</span></span>';
+    
+    /* Require a secondary click to confirm button action. */
+    ml.confirmAction = function (btn, action) {
+        if (!btn.hasOwnProperty('confirmState')) {
+            btn.confirmState=true;
+            btn.originalText = btn.innerHTML;
+            btn.dataset.state = 'confirm';
+            btn.innerHTML = 'Click Again to Confirm';
+            btn.resetTimerID = (function(el) {
+                return setTimeout(function() {
+                    delete el.confirmState;
+                    el.innerHTML = el.originalText
+                }, 1800)
+            }(btn));
+        } else {
+            clearTimeout(btn.resetTimerID);
+            action();
+            btn.innerHTML = btn.originalText;
+            delete btn.confirmState;
+        }
     };
 
     ml.removeBox = function (obj) {
-        obj.parentNode.parentNode.parentNode.parentNode.remove();
-    };
-
-    ml.removeConf = function (obj) {
-        obj.parentNode.parentNode.innerHTML = '<span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span';
+        obj.parentNode.parentNode.remove();
     };
 
     // consolidates all the form data and converts it into a json string

@@ -25,9 +25,30 @@
             // retrieve plugin data
 	    	$plugin_data = get_plugin_data( plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . 'text-inserts.php' );
 	    	$plugin_version = $plugin_data['Version'];
+            
+	    	// check latest version
+			$ch = curl_init();
+			curl_setopt( $ch, CURLOPT_URL, 'http://www.authoritysitesecrets.com/plugin-latest-versions.json' );
+			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+			curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
+			$version_check_out = curl_exec($ch);
+
+			$latest_version = json_decode( $version_check_out, true )['text-inserts'];
+			$vcheck = version_compare( $plugin_version, $latest_version );
+			$mver_diff = explode( '.', $plugin_version)[0] - explode( '.', $latest_version )[0]; // calculate major version difference
+			$vcheck_c = 'highlight';
+
+			if ( $vcheck > -1 ) {
+				$vcheck_c = 'action';
+			}
+			else {
+				if ( $mver_diff < 0 ) {
+					$vcheck_c = 'caution';
+				}
+			}
         ?>
         
-        <p><a id="version-info" href="<?php echo plugins_url( 'CHANGES.md', dirname( dirname(__FILE__) ) ); ?>" target="_blank" title="View Changelog" class="unicorn-btn unicorn-btn-pill unicorn-btn-flat-action unicorn-btn-tiny">v<?php echo $plugin_version; ?></a></p>
+        <p><a id="version-info" href="<?php echo plugins_url( 'CHANGES.md', dirname( dirname(__FILE__) ) ); ?>" target="_blank" title="View Changelog" class="unicorn-btn unicorn-btn-pill unicorn-btn-flat-<?php echo $vcheck_c; ?> unicorn-btn-tiny">v<?php echo $plugin_version; ?></a><?php if ( $vcheck < 0 ) { echo '&nbsp;&nbsp;&nbsp;Plugin is outdated. Please update to the latest version.'; } ?></p>
 
 		<input type="hidden" name="txtins_hook_boxes" id="json_hb" value="" />
 		<input type="hidden" name="txtins_content_boxes" id="json_cb" value="" />
@@ -115,9 +136,8 @@
 							  <a></a>
 							</label>
                         </div>
-                        <span class="rem-parent" style="position: relative; top: -20px;">
-                            <span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span>
-                        </span>
+                        <button type="button" style="float: right; position: relative; top: -25px;" class="unicorn-btn unicorn-btn-flat-caution unicorn-btn-rounded unicorn-btn-small" onclick="(function(el){TextInserts.confirmAction(el, function(){ TextInserts.removeBox(el); })}(this))"><i class="fa fa-remove"></i> Remove</button>
+                        <div style="clear:both; display: none;"></div>
                     </div>
                 </div>
 
@@ -209,9 +229,8 @@
 							  <a></a>
 							</label>
                         </div>
-                        <span class="rem-parent" style="position: relative; top: -20px;">
-                            <span class="remove-txt" onclick="TextInserts.displayRemoveConf(this)">Remove</span>
-                        </span>
+                        <button type="button" style="float: right; position: relative; top: -25px;" class="unicorn-btn unicorn-btn-flat-caution unicorn-btn-rounded unicorn-btn-small" onclick="(function(el){TextInserts.confirmAction(el, function(){ TextInserts.removeBox(el); })}(this))"><i class="fa fa-remove"></i> Remove</button>
+                        <div style="clear:both; display: none;"></div>
                     </div>
                 </div>
 

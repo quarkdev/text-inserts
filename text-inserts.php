@@ -10,7 +10,7 @@
  * Plugin Name:       Text Inserts
  * Plugin URI:       
  * Description:       Simplifies ad-code or text insertions by making it possible to add content/hook text inserts via the plugin settings panel.
- * Version:           1.2.1
+ * Version:           1.2.2
  * Author:            Roosdoring Inc
  * Author URI:        http://www.authoritysitesecrets.com/
  * Text Domain:       text-inserts
