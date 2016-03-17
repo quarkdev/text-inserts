@@ -25,27 +25,44 @@
             // retrieve plugin data
 	    	$plugin_data = get_plugin_data( plugin_dir_path( dirname( dirname( __FILE__ ) ) ) . 'text-inserts.php' );
 	    	$plugin_version = $plugin_data['Version'];
+            $latest_version = $plugin_version;
             
-	    	// check latest version
-			$ch = curl_init();
-			curl_setopt( $ch, CURLOPT_URL, 'http://www.authoritysitesecrets.com/plugin-latest-versions.json' );
-			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-			curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
-			$version_check_out = curl_exec($ch);
+            /* Version Check Start */
+            // check if we have a cached version_check
+            $vc_cached = get_option( 'txi_vc_cached', array( "v" => $plugin_version, "ts" => 0 ) );
 
-			$latest_version = json_decode( $version_check_out, true )['text-inserts'];
-			$vcheck = version_compare( $plugin_version, $latest_version );
-			$mver_diff = explode( '.', $plugin_version)[0] - explode( '.', $latest_version )[0]; // calculate major version difference
-			$vcheck_c = 'highlight';
+            $vcheck_c = 'action';
+            $vcheck = 0;
 
-			if ( $vcheck > -1 ) {
-				$vcheck_c = 'action';
-			}
-			else {
-				if ( $mver_diff < 0 ) {
-					$vcheck_c = 'caution';
-				}
-			}
+            // check cache first
+            if ( time() - $vc_cached['ts'] < 3600 ) {
+                $latest_version = $vc_cached['v'];
+            }
+            else {
+                // check latest version
+                $ch = curl_init();
+                curl_setopt( $ch, CURLOPT_URL, 'http://www.authoritysitesecrets.com/plugin-latest-versions.json' );
+                curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
+                curl_setopt( $ch, CURLOPT_TIMEOUT, 10 );
+                curl_setopt( $ch, CURLOPT_CONNECTTIMEOUT, 5 );
+                $vc_success = curl_exec($ch);
+
+                if ( $vc_success !== false ) {
+                    $latest_version = json_decode( $version_check_out, true )['price-comparison-manager'];
+                    update_option( 'pcm_vc_cached', array( "v" => $latest_version, "ts" => time() ) );
+                }
+            }
+
+            $vcheck = version_compare( $plugin_version, $latest_version );
+            $mver_diff = explode( '.', $plugin_version)[0] - explode( '.', $latest_version )[0]; // calculate major version difference
+
+            if ( $mver_diff < 0 ) {
+                $vcheck_c = 'caution';
+            }
+            else if ( $vcheck < 0 ) {
+                $vcheck_c = 'highlight';
+            }
+            /* Version Check End */
         ?>
         
         <p><a id="version-info" href="<?php echo plugins_url( 'CHANGES.md', dirname( dirname(__FILE__) ) ); ?>" target="_blank" title="View Changelog" class="unicorn-btn unicorn-btn-pill unicorn-btn-flat-<?php echo $vcheck_c; ?> unicorn-btn-tiny">v<?php echo $plugin_version; ?></a><?php if ( $vcheck < 0 ) { echo '&nbsp;&nbsp;&nbsp;Plugin is outdated. Please update to the latest version.'; } ?></p>

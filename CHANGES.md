@@ -1,3 +1,6 @@
+### 1.2.3
+* In-plugin version checks are now cached for 1 hour.
+
 ### 1.2.2
 * Reworked removal button confirmation.
 

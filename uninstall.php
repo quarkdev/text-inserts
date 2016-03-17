@@ -17,7 +17,9 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 // 1. remove database entries
 delete_option( 'txtins_hook_boxes' );
 delete_option( 'txtins_content_boxes' );
+delete_option( 'txi_vc_cached' );
 
 // for multisite
 delete_site_option( 'txtins_hook_boxes' );
 delete_site_option( 'txtins_content_boxes' );
+delete_site_option( 'txi_vc_cached' );
