@@ -48,8 +48,8 @@
                 $vc_success = curl_exec($ch);
 
                 if ( $vc_success !== false ) {
-                    $latest_version = json_decode( $version_check_out, true )['price-comparison-manager'];
-                    update_option( 'pcm_vc_cached', array( "v" => $latest_version, "ts" => time() ) );
+                    $latest_version = json_decode( $vc_success, true )['text-inserts'];
+                    update_option( 'txi_vc_cached', array( "v" => $latest_version, "ts" => time() ) );
                 }
             }
 
