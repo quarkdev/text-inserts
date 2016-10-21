@@ -1,3 +1,6 @@
+### 1.2.4
+* Fixed exclude-all-except filter ignoring the IDs.
+
 ### 1.2.3
 * In-plugin version checks are now cached for 1 hour.
 

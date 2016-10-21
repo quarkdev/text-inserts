@@ -146,7 +146,7 @@ class Text_Inserts {
                                     $ci_ok = in_array( $catid , $cat_ids );
                                 }
                                 
-                                $filtering_ok = $pi_ok || $ci_ok;
+                                $filtering_ok = $pi_ok && $ci_ok;
                                 break;
                             case 3:
                                 // include all except
@@ -232,7 +232,7 @@ class Text_Inserts {
                                     $ci_ok = in_array( $catid , $cat_ids );
                                 }
                                 
-                                $filtering_ok = $pi_ok || $ci_ok;
+                                $filtering_ok = $pi_ok && $ci_ok;
                                 break;
                             case 3:
                                 // include all except
