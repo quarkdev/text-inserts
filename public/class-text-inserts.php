@@ -184,7 +184,13 @@ class Text_Inserts {
                         global $post;
                         
                         $categories = get_the_category( $post->ID );
-                        $catid = $categories[0] -> cat_ID;
+                        
+						$obj_cat_ids = [];
+						
+						// store only the posts/pages' category ids in array
+						foreach ( $categories as $object_category ) {
+							$obj_cat_ids[] = (int) $object_category->cat_ID;
+						}
                         
                         $ids = explode( ',', str_replace( ' ', '', $filtered_list ) );
                         
@@ -199,7 +205,7 @@ class Text_Inserts {
                                 array_push( $post_ids, $ids[$x] );
                             }
                         }
-                        
+
                         $display_ok = false;
                         $filtering_ok = false;
                         
@@ -229,7 +235,7 @@ class Text_Inserts {
                                 }
                                 
                                 if ( count( $cat_ids ) > 0 ) {
-                                    $ci_ok = in_array( $catid , $cat_ids );
+									$ci_ok = array_intersect( $obj_cat_ids, $cat_ids ) ? true : false;
                                 }
                                 
                                 $filtering_ok = $pi_ok && $ci_ok;
@@ -241,7 +247,7 @@ class Text_Inserts {
                                 }
                                 
                                 if ( count( $cat_ids ) > 0 ) {
-                                    $ci_ok = !in_array( $catid, $cat_ids );
+									$ci_ok = array_intersect( $obj_cat_ids, $cat_ids ) ? false : true;
                                 } 
                                 
                                 $filtering_ok = $pi_ok && $ci_ok;

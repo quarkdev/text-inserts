@@ -1,3 +1,6 @@
+### 1.3.0
+* Reworked category filtering, now matches posts with more than one category.
+
 ### 1.2.4
 * Fixed exclude-all-except filter ignoring the IDs.
 
