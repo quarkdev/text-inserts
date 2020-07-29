@@ -83,7 +83,7 @@
             <p>Use these boxes to insert text/html content to the defined Wordpress or Custom Theme Hooks.</p>
             <div id="hook-boxes">
                 <?php
-                    $hook_boxes = json_decode( get_option( 'txtins_hook_boxes' ) );
+                    $hook_boxes = json_decode( get_option( 'txtins_hook_boxes', '[]' ) );
                     $hb_count = count($hook_boxes);
 
                     if ($hb_count > 0):
@@ -170,7 +170,7 @@
             <p>Use these boxes to insert text/html content to the post/page content area.</p>
             <div id="content-boxes">
                 <?php
-                    $content_boxes = json_decode( get_option( 'txtins_content_boxes' ) );
+                    $content_boxes = json_decode( get_option( 'txtins_content_boxes', '[]' ) );
                     $cb_count = count($content_boxes);
 
                     if ($cb_count > 0):
