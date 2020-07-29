@@ -77,8 +77,8 @@ class Text_Inserts {
 		// prepare the hook/content boxes
 		$hook_boxes = json_decode( get_option( 'txtins_hook_boxes', '[]' ) );
 		$content_boxes = json_decode( get_option( 'txtins_content_boxes', '[]' ) );
-		$hb_count = count($hook_boxes);
-		$cb_count = count($content_boxes);
+		$hb_count = is_array($hook_boxes) ? count($hook_boxes) : 0;
+		$cb_count = is_array($content_boxes) ? count($content_boxes) : 0;
 
 		// add hook actions
 		if ($hb_count > 0) {

@@ -84,7 +84,7 @@
             <div id="hook-boxes">
                 <?php
                     $hook_boxes = json_decode( get_option( 'txtins_hook_boxes', '[]' ) );
-                    $hb_count = count($hook_boxes);
+                    $hb_count = is_array($hook_boxes) ? count($hook_boxes) : 0;
 
                     if ($hb_count > 0):
                         for ($i = 0; $i < $hb_count; $i++):
@@ -171,7 +171,7 @@
             <div id="content-boxes">
                 <?php
                     $content_boxes = json_decode( get_option( 'txtins_content_boxes', '[]' ) );
-                    $cb_count = count($content_boxes);
+                    $cb_count = is_array( $content_boxes ) ? count($content_boxes) : 0;
 
                     if ($cb_count > 0):
                         for ($i = 0; $i < $cb_count; $i++):
